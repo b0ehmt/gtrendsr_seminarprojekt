@@ -3,7 +3,7 @@ library(ggplot2)
 library(dplyr)
 library(maps)
 
-### Suchinteresse von "Coronavirus" in den USA, mapped (2020) ###
+### COVID-19 Suchinteresse in den USA geogr. abgebildet (Zeitraum Januar–Juni 2020) ###
 
 #Daten von Google Trends abfragen und sortieren
 coronavirus_trends <- gtrends(keyword="Coronavirus", geo= "US", time="2019-12-31 2020-05-15", low_search_volume=TRUE)
@@ -15,6 +15,7 @@ coronavirus_trends$interest_by_region %>%
   filter(region %in% state$region) %>%
   select(region, hits) -> map
 
+#Plotten
 ggplot() +
   geom_map(data = state,
            map = state,
@@ -30,4 +31,3 @@ ggplot() +
         axis.ticks = element_blank(),
         axis.text = element_blank(),
         axis.title = element_blank())
-
